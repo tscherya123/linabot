@@ -11,4 +11,4 @@ target
 
 *.DS_Store
 /.idea/
-/.idea/
+/src/main/resources/mydb.mv.db
