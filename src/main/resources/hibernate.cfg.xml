@@ -10,7 +10,7 @@
     <property name="hibernate.connection.username">kecezxfntvznuo</property>
     <property name="hibernate.connection.password">26c5216c0ab1ef15e639e9be44f938f98664a5f0751d15b870a0a2af50fefc6a</property>
 
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL92Dialect</property>
     <property name="show_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
 
