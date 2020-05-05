@@ -349,16 +349,9 @@ public class MsgHandler {
         sendMsg.setChatId(msg.getChatId());
         String username = userDao.findById(id).getUsername();
 
-        if (msg.getText().equals("/удалилоха")
-            && (username.equals("Anton_sher")
-            || username.equals("slim_fetty"))) {
-            User anton_sher = userDao.findByUsername("Anton_sher");
-            userDao.remove(anton_sher);
-            userDetailAnswerDao.remove(userDetailAnswerDao.findById(anton_sher.getId()));
-        } else if (msg.getText().equals("/allresults")
+        if (msg.getText().equals("/allresults")
             && (username.equals("alisha_sytnychuk")
-                || username.equals("slim_fetty")
-                || username.equals("Anton_sher"))) {
+                || username.equals("slim_fetty"))) {
             List<User> users = userDao.findAll();
             List<UserInfoModel> infoModels = new ArrayList<UserInfoModel>();
             users.forEach(user -> {
