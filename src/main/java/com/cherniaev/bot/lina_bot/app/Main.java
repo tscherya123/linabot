@@ -10,16 +10,11 @@ public class Main {
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi telegram = new TelegramBotsApi();
-
-        Thread thread = new Thread(() -> {
-            Bot bot = new Bot();
-            try {
-                telegram.registerBot(bot);
-            } catch (TelegramApiRequestException e) {
-                e.printStackTrace();
-            }
-        });
-
-        thread.start();
+        Bot bot = new Bot();
+        try {
+            telegram.registerBot(bot);
+        } catch (TelegramApiRequestException e) {
+            e.printStackTrace();
+        }
     }
 }
