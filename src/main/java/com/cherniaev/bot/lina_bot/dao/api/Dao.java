@@ -1,14 +1,9 @@
 package com.cherniaev.bot.lina_bot.dao.api;
 
-import com.cherniaev.bot.lina_bot.pojo.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-
-import javax.persistence.NoResultException;
-import java.util.List;
 
 public class Dao {
     private final SessionFactory sessionFactory;
