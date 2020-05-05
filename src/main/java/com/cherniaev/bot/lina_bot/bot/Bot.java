@@ -1,12 +1,18 @@
 package com.cherniaev.bot.lina_bot.bot;
 
+import com.cherniaev.bot.lina_bot.app.Main;
 import com.cherniaev.bot.lina_bot.flow.MsgHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Bot extends TelegramLongPollingBot {
+
+    private static final Logger LOGGER = Logger.getLogger(TelegramLongPollingBot.class.getName());
 
     private MsgHandler msgHandler;
 
@@ -21,7 +27,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
             execute(msgHandler.handleMsg(getMsg, id));
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,"Exception occur", e);
         }
     }
 

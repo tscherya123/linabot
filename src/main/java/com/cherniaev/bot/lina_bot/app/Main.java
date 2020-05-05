@@ -19,7 +19,7 @@ public class Main {
         try {
             telegram.registerBot(bot);
         } catch (TelegramApiRequestException e) {
-            LOGGER.log(Level.SEVERE, "Exception occur", e);
+            LOGGER.log(Level.WARNING, "Exception occur", e);
         }
     }
 }
