@@ -5,7 +5,12 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Main {
+
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
@@ -14,7 +19,7 @@ public class Main {
         try {
             telegram.registerBot(bot);
         } catch (TelegramApiRequestException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
     }
 }
