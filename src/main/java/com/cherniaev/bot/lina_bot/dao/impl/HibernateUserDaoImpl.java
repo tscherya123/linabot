@@ -59,7 +59,7 @@ public class HibernateUserDaoImpl extends Dao implements UserDao {
         try {
             session = super.getCurrentSession();
             TypedQuery<User> typedQuery = session
-                .createQuery("FROM User user where user.id = :id");
+                .createQuery("FROM User myUser where myUser.id = :id");
             typedQuery.setParameter("id", id);
             result = typedQuery.getSingleResult();
         } catch (Exception ex) {
@@ -82,7 +82,7 @@ public class HibernateUserDaoImpl extends Dao implements UserDao {
         try {
             session = super.getCurrentSession();
             TypedQuery<User> typedQuery = session
-                .createQuery("FROM User user where user.username = :username");
+                .createQuery("FROM User myUser where myUser.username = :username");
             typedQuery.setParameter("username", username);
             result = typedQuery.getSingleResult();
         } catch (Exception ex) {
