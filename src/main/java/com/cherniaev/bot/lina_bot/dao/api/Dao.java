@@ -83,25 +83,6 @@ public class Dao {
         }
     }
 
-    public List<User> findAll() {
-        Session session = null;
-        List<User> result = null;
-        try {
-            session = getCurrentSession();
-            Query<User> query = session.createQuery("FROM User");
-            result = query.getResultList();
-        } catch (NoResultException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return result;
-    }
-
     public Session getCurrentSession() throws HibernateException {
         return sessionFactory.openSession();
     }

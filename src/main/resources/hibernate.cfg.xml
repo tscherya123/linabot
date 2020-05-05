@@ -15,5 +15,6 @@
     <property name="hbm2ddl.auto">update</property>
 
     <mapping class="com.cherniaev.bot.lina_bot.pojo.User" />
+    <mapping class="com.cherniaev.bot.lina_bot.pojo.UserDetailAnswer" />
   </session-factory>
 </hibernate-configuration>

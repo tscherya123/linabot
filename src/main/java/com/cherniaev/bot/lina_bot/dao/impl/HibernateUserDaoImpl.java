@@ -5,7 +5,9 @@ import com.cherniaev.bot.lina_bot.dao.api.UserDao;
 import com.cherniaev.bot.lina_bot.pojo.User;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -29,7 +31,22 @@ public class HibernateUserDaoImpl extends Dao implements UserDao {
 
     @Override
     public List<User> findAll() {
-        return super.findAll();
+        Session session = null;
+        List<User> result = null;
+        try {
+            session = getCurrentSession();
+            Query<User> query = session.createQuery("FROM User");
+            result = query.getResultList();
+        } catch (NoResultException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return result;
     }
 
     @Override

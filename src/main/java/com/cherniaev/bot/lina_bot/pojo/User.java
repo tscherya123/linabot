@@ -23,19 +23,12 @@ public class User {
     @Id
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "username")
     private String username;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email")
-    private String email;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "weight")
-    private String weight;
-    @Column(name = "height")
-    private String height;
 }
