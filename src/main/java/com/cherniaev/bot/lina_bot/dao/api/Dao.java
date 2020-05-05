@@ -11,7 +11,8 @@ public class Dao {
     public Dao() {
         try {
             Configuration config = new Configuration()
-                .configure("hibernate.cfg.xml");
+                .configure("hibernate.cfg.xml")
+                .setProperty("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
             sessionFactory = config.buildSessionFactory();
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
