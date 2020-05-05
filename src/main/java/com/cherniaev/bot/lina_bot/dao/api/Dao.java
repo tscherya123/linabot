@@ -4,7 +4,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
