@@ -54,7 +54,7 @@ public class LinaBot extends TelegramLongPollingBot {
 
         User user = userService.findUserById(update.getMessage().getFrom().getId());
 
-        if (checkIfAdminCommand(user, text)) {
+        if (text != null && checkIfAdminCommand(user, text)) {
             return;
         }
 
@@ -70,11 +70,11 @@ public class LinaBot extends TelegramLongPollingBot {
             newUser.setStateId(state.ordinal());
             userService.save(newUser);
 
-            context = BotContext.of(this, newUser, text);
+            context = BotContext.of(this, newUser, text, update);
             state.enter(context);
             logger.info("NEW USER :" + newUser.getId());
         } else {
-            context = BotContext.of(this, user, text);
+            context = BotContext.of(this, user, text, update);
             state = BotState.byId(user.getStateId());
 
             logger.info("user " + user.getId() + " in state " + state);
@@ -134,9 +134,9 @@ public class LinaBot extends TelegramLongPollingBot {
     private void listUsers(User admin) {
         StringBuilder sb = new StringBuilder();
         List<User> users = userService.findAll();
-
+        sb.append("-------------\n");
         users.forEach(user -> {
-            sb.append(user.getId()).append(' ').append(user.getUsername()).append('\n');
+            sb.append("Участник ").append(user.toString()).append("\n").append("-------------\n");
         });
 
         sendMessage(admin.getChatId(), sb.toString());

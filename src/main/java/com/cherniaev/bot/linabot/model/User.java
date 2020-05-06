@@ -34,6 +34,16 @@ public class User {
     private Integer stateId;
     @Column(name = "isAdmin")
     private boolean isAdmin;
+    @Column(name = "experience")
+    private Integer experience;
+    @Column(name = "trainingTimes")
+    private Integer trainingTimes;
+    @Column(name = "isCountingCalories")
+    private boolean isCountingCalories;
+    @Column(name = "isMeditating")
+    private boolean isMeditating;
+    @Column(name = "level")
+    private Integer level;
 
     @Override
     public String toString() {
@@ -45,7 +55,13 @@ public class User {
             ", lastName='" + lastName + '\'' +
             ", phone='" + phone + '\'' +
             ", email='" + email + '\'' +
+            ", stateId=" + stateId +
             ", isAdmin=" + isAdmin +
+            ", experience=" + experience +
+            ", trainingTimes=" + trainingTimes +
+            ", isCountingCalories=" + isCountingCalories +
+            ", isMeditating=" + isMeditating +
+            ", level=" + level +
             '}';
     }
 }
