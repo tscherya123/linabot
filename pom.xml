@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.cherniaev.bot</groupId>
 	<artifactId>lina-bot</artifactId>
-	<version>1.1</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>lina-bot</name>
 	<description>Bot</description>
 
