@@ -135,18 +135,18 @@ public enum BotState {
 
         @Override
         public BotState nextState() {
-            return null;
+            return WAITING;
         }
     },
     WAITING {
         @Override
         public void enter(BotContext context) {
-
+            sendMessage(context, "See you!");
         }
 
         @Override
         public BotState nextState() {
-            return null;
+            return WAITING;
         }
     };
 
