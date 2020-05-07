@@ -42,7 +42,7 @@ public enum BotState {
             ArrayList<KeyboardRow> keyboard = new ArrayList<>();
             KeyboardRow keyboardRow1 = new KeyboardRow();
             KeyboardButton keyboardButton = new KeyboardButton();
-            keyboardButton.setText("Поделится контактом >").setRequestContact(true);
+            keyboardButton.setText("Поделиться контактом >").setRequestContact(true);
             keyboardRow1.add(keyboardButton);
             keyboard.add(keyboardRow1);
             replyKeyboardMarkup.setKeyboard(keyboard);

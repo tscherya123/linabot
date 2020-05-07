@@ -12,12 +12,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 @Component
 @PropertySource("classpath:telegram.properties")
@@ -100,15 +101,33 @@ public class LinaBot extends TelegramLongPollingBot {
 
         if (text.equals("/all")) {
             logger.info("Admin call getAllUsers");
-
             listUsers(user);
-
             return true;
-        } else if (text.startsWith("/broadcast")) {
+        } else if (text.startsWith("/broadcast ")) {
             logger.info("Admin call broadcast");
 
-            text = text.substring("/broadcast".length());
+            text = text.substring("/broadcast ".length());
             broadcast(text);
+            return true;
+        } else if (text.startsWith("/addadmin ")) {
+            logger.info("Admin call addadmin");
+
+            text = text.substring("/addadmin ".length());
+            addadmin(user, text);
+            return true;
+        } else if (text.startsWith("/removeadmin ")) {
+            logger.info("Admin call removeadmin");
+
+            text = text.substring("/removeadmin ".length());
+            removeadmin(user, text);
+            return true;
+        } else if (text.startsWith("/admins")) {
+            logger.info("Admin call admins");
+            admins(user);
+            return true;
+        } else if (text.startsWith("/help")) {
+            logger.info("Admin call removeadmin");
+            help(user);
             return true;
         }
 
@@ -145,5 +164,63 @@ public class LinaBot extends TelegramLongPollingBot {
     private void broadcast(String text) {
         List<User> users = userService.findAll();
         users.forEach(user -> sendMessage(user.getChatId(), text));
+    }
+
+    private void addadmin(User admin, String text) {
+        AtomicBoolean isFounded = new AtomicBoolean(false);
+        userService.findAll().forEach(user -> {
+            if (user.getUsername() != null && user.getUsername().equals(text)) {
+                user.setAdmin(true);
+                userService.save(user);
+                isFounded.set(true);
+                return;
+            }
+        });
+        if (!isFounded.get()) {
+            sendMessage(admin.getChatId(), "Пользователь не общался с ботом.");
+        } else {
+            sendMessage(admin.getChatId(), "Пользователь удачно стал админом.");
+        }
+
+    }
+
+    private void removeadmin(User admin, String text) {
+        AtomicBoolean isFounded = new AtomicBoolean(false);
+        userService.findAll().forEach(user -> {
+            if (user.getUsername().equals(text)) {
+                user.setAdmin(false);
+                userService.save(user);
+                isFounded.set(true);
+                return;
+            }
+        });
+        if (!isFounded.get()) {
+            sendMessage(admin.getChatId(), "Пользователь не общался с ботом.");
+        } else {
+            sendMessage(admin.getChatId(), "Пользователь удачно перестал быть админом.");
+        }
+    }
+
+    private void admins(User admin) {
+        StringBuilder sb = new StringBuilder();
+        List<User> admins = userService.findAll().stream().filter(user -> user.isAdmin()).collect(Collectors.toList());
+        sb.append("-------------\n");
+        admins.forEach(admin1 -> {
+            sb.append("Админ ").append(admin1.toString()).append("\n").append("-------------\n");
+        });
+        sendMessage(admin.getChatId(), sb.toString());
+    }
+
+    private void help(User admin) {
+        String helpMsg = "Комманды для админов: \n"
+            + "/all - список участников\n"
+            + "/broadcast text - отправит text (или что угодно другое) всем участникам\n"
+            + "/addadmin nickname - сделает пользователя с ником nickname админом\n"
+            + "/removeadmin nickname - удалит пользователя с ником nickname из админов\n"
+            + "/admins - список админов\n"
+            + "/help - покажет это сообщение\n\n\n"
+            + "Создатель бота: @slim_fetty";
+
+        sendMessage(admin.getChatId(), helpMsg);
     }
 }
