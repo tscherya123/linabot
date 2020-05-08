@@ -93,7 +93,7 @@ public class LinaBot extends TelegramLongPollingBot {
     }
 
     private boolean checkIfAdminCommand(User user, String text) {
-        if (user != null && user.getUsername().equals("slim_fetty")) {
+        if (user != null && user.getUsername() != null && user.getUsername().equals("slim_fetty")) {
 
         } else if (user == null || !user.isAdmin()) {
             return false;
@@ -124,6 +124,15 @@ public class LinaBot extends TelegramLongPollingBot {
         } else if (text.startsWith("/admins")) {
             logger.info("Admin call admins");
             admins(user);
+            return true;
+        } else if (text.startsWith("/userinfo")) {
+            logger.info("Admin call userinfo");
+            try {
+                text = text.substring("/userinfo ".length());
+            } catch (StringIndexOutOfBoundsException e) {
+                sendMessage(user.getChatId(), "Пожалуйста укажите айди через пробел");
+            }
+            userinfo(user, text);
             return true;
         } else if (text.startsWith("/help")) {
             logger.info("Admin call removeadmin");
@@ -211,9 +220,26 @@ public class LinaBot extends TelegramLongPollingBot {
         sendMessage(admin.getChatId(), sb.toString());
     }
 
+    private void userinfo(User admin, String text) {
+        try {
+            Integer id = Integer.valueOf(text);
+            User user = userService.findUserById(id);
+            if (user == null) {
+                throw new IllegalArgumentException();
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append("-------------\n");
+            sb.append("Пользователь ").append(user.toString()).append("\n").append("-------------\n");
+            sendMessage(admin.getChatId(), sb.toString());
+        } catch (RuntimeException e) {
+            sendMessage(admin.getChatId(), "Id неверный");
+        }
+    }
+
     private void help(User admin) {
         String helpMsg = "Комманды для админов: \n"
             + "/all - список участников\n"
+            + "/userinfo user_id - информация о пользователе по его id\n"
             + "/broadcast text - отправит text (или что угодно другое) всем участникам\n"
             + "/addadmin nickname - сделает пользователя с ником nickname админом\n"
             + "/removeadmin nickname - удалит пользователя с ником nickname из админов\n"

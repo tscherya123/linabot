@@ -1,5 +1,6 @@
 package com.cherniaev.bot.linabot.model;
 
+import com.cherniaev.bot.linabot.flow.BotState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,21 +48,40 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-            "id=" + id +
-            ", chatId=" + chatId +
-            ", username='" + username + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", phone='" + phone + '\'' +
-            ", email='" + email + '\'' +
-            ", stateId=" + stateId +
-            ", isAdmin=" + isAdmin +
-            ", experience=" + experience +
-            ", trainingTimes=" + trainingTimes +
-            ", isCountingCalories=" + isCountingCalories +
-            ", isMeditating=" + isMeditating +
-            ", level=" + level +
-            '}';
+//        return "User{" +
+//            "id=" + id +
+//            ", chatId=" + chatId +
+//            ", username='" + username + '\'' +
+//            ", firstName='" + firstName + '\'' +
+//            ", lastName='" + lastName + '\'' +
+//            ", phone='" + phone + '\'' +
+//            ", email='" + email + '\'' +
+//            ", stateId=" + stateId +
+//            ", isAdmin=" + isAdmin +
+//            ", experience=" + experience +
+//            ", trainingTimes=" + trainingTimes +
+//            ", isCountingCalories=" + isCountingCalories +
+//            ", isMeditating=" + isMeditating +
+//            ", level=" + level +
+//            '}';
+//
+        return "id: " + id +
+            "\nИмя: " + firstName +
+            "\nФамилия: " + lastName +
+            "\nСсылка на тг: @" + username +
+            "\nТел: " + phone +
+            "\nПочта: " + email +
+            "\nAdmin: " + (isAdmin ? "да" : "нет") +
+            "\nОтветы:\n" +
+            "Опыт: " + experience +
+            "\nКоличество тренировок в неделю: " + trainingTimes +
+            "\nСчитает калории: " + (isCountingCalories ? "да" : "нет") +
+            "\nМедитирует: " + (isMeditating ? "да" : "нет") +
+            "\nУровень: " +
+            (level == null  ? "Неопределен" :
+                level.equals(1) ? "Начинающий" :
+                    level.equals(3) ? "Профи" :
+                        level.equals(2) ? "Продвинутый" : "") +
+            "\nЭтап=" + BotState.byId(stateId).name();
     }
 }

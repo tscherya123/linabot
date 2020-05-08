@@ -274,7 +274,7 @@ public enum BotState {
     WAITING {
         @Override
         public void enter(BotContext context) {
-            sendMessage(context, "На этом пока всё, спасибо!");
+            sendMessage(context, WAITING_MSG);
         }
 
         @Override

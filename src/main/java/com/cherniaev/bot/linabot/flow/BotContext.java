@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 @AllArgsConstructor
 @Getter

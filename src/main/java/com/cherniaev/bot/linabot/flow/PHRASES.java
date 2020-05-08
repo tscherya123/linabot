@@ -7,7 +7,7 @@ public class PHRASES {
         + "И твой гид к здоровому телу через осознанность❤️\n\n"
         + "Благодарю тебя за активность и  перед тем, как получить свой подарок \n\n"
         + " - чек-лист «Прощай,Целлюлит»❕";
-    public static final String CONTACT_REQUEST_MSG = "Я тебя прошу оставить свои контактные данные, чтобы ты смогла получать полезную информацию одной из первых\uD83D\uDC4C";
+    public static final String CONTACT_REQUEST_MSG = "Я тебя прошу оставить свои контактные данные, чтобы ты смогла получать полезную информацию одной из первых\uD83D\uDC4C\n\nДля этого нажми кнопку на клавиатуре \"Поделиться контактом\"\uD83D\uDE0A";
 
     public static final String EMAIL_REQUEST_MSG = "Отлично!\n"
         + "И последний шаг - адрес электронной почты ";
@@ -25,6 +25,12 @@ public class PHRASES {
     public static final String CALORIES_MSG = "Считаешь калории?\uD83E\uDD57";
 
     public static final String MEDITATION_MSG = "Практикуешь медитацию?\uD83E\uDDD8\u200D♀️";
+
+    public static final String WAITING_MSG = "Оставайся на связи и получай полезную информацию одним из первых!\n"
+        + "\n"
+        + "А так же информацию о прямых эфирах в моём Instagram!\n"
+        + "\n"
+        + "https://www.instagram.com/_alisha.sytnychuk_/";
 
 
 
