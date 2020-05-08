@@ -1,4 +1,4 @@
-package com.cherniaev.bot.lina_bot.flow;
+package com.cherniaev.bot.linabot.flow;
 
 public class PHRASES {
     public static final String HELLO_MSG = "Привет!\n"
@@ -6,15 +6,16 @@ public class PHRASES {
         + "Я-психолог, тренер и практикующий кинезиолог.\n"
         + "И твой гид к здоровому телу через осознанность❤️\n\n"
         + "Благодарю тебя за активность и  перед тем, как получить свой подарок \n\n"
-        + " - чек-лист «Прощай,Целлюлит»❕\n\n"
-        + "Я тебя прошу оставить свои контактные данные, чтобы ты смогла получать полезную информацию одной из первых\uD83D\uDC4C";
+        + " - чек-лист «Прощай,Целлюлит»❕";
+    public static final String CONTACT_REQUEST_MSG = "Я тебя прошу оставить свои контактные данные, чтобы ты смогла получать полезную информацию одной из первых\uD83D\uDC4C\n\nДля этого нажми кнопку на клавиатуре \"Поделиться контактом\"\uD83D\uDE0A";
 
-    public static final String EMAIL_MSG = "Отлично!\n"
+    public static final String EMAIL_REQUEST_MSG = "Отлично!\n"
         + "И последний шаг - адрес электронной почты ";
 
-    public static final String OFFER_MSG = "Вот твой подарок:\n\n"
-        + "https://t.me/joinchat/AAAAAFbIlCMG_Hd0wg-uTQ\n\n"
-        + "Хочешь узнать уровень своей  спортивной подготовки и получить бесплатную неделю в моём курсе «Скажи себе Да»?\n"
+    public static final String PRESENT_MSG = "Вот твой подарок:\n\n"
+        + "https://t.me/joinchat/AAAAAFbIlCMG_Hd0wg-uTQ\n\n";
+
+    public static final String REQUEST_TO_START_POOL_MSG = "Хочешь узнать уровень своей  спортивной подготовки и получить бесплатную неделю в моём курсе «Скажи себе Да»?\n"
         + "Ответь на пару вопросов \uD83D\uDD1C";
 
     public static final String TIMES_MSG = "Сколько раз в неделю тренируешься?\uD83C\uDFCB\uD83C\uDFFB\u200D♂️\n";
@@ -24,6 +25,12 @@ public class PHRASES {
     public static final String CALORIES_MSG = "Считаешь калории?\uD83E\uDD57";
 
     public static final String MEDITATION_MSG = "Практикуешь медитацию?\uD83E\uDDD8\u200D♀️";
+
+    public static final String WAITING_MSG = "Оставайся на связи и получай полезную информацию одним из первых!\n"
+        + "\n"
+        + "А так же информацию о прямых эфирах в моём Instagram!\n"
+        + "\n"
+        + "https://www.instagram.com/_alisha.sytnychuk_/";
 
 
 
@@ -56,5 +63,4 @@ public class PHRASES {
         + "https://t.me/joinchat/AAAAAEfKx-KcdQfD1aqCrA\n"
         + "Начало 11 мая❕\n"
         + "До встречи\uD83D\uDD90\uD83C\uDFFB";
-
 }
