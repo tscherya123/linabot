@@ -103,6 +103,10 @@ public class LinaBot extends TelegramLongPollingBot {
             logger.info("Admin call getAllUsers");
             listUsers(user);
             return true;
+        } else if (text.equals("/all_small")) {
+            logger.info("Admin call getAllUsers");
+            listUsersSmall(user);
+            return true;
         } else if (text.startsWith("/broadcast ")) {
             logger.info("Admin call broadcast");
 
@@ -175,6 +179,19 @@ public class LinaBot extends TelegramLongPollingBot {
         }
     }
 
+    private void listUsersSmall(User admin) {
+        List<User> users = userService.findAll();
+        StringBuilder sb = new StringBuilder();
+        sb.append("-------------\n");
+        sb.append("Количество людей, запустивших бота: ").append(users.size()).append("\n");
+        sb.append("--ИМЯ---ТЕЛ--").append(users.size()).append("\n");
+        users.forEach(user -> {
+            sb.append("-------------\n");
+            sb.append(user.getFirstName()).append(" ").append(user.getPhone());
+        });
+        sendMessage(admin.getChatId(), sb.toString());
+    }
+
     private void broadcast(String text) {
         List<User> users = userService.findAll();
         users.forEach(user -> sendMessage(user.getChatId(), text));
@@ -244,6 +261,7 @@ public class LinaBot extends TelegramLongPollingBot {
     private void help(User admin) {
         String helpMsg = "Комманды для админов: \n"
             + "/all - список участников\n"
+            + "/all_small - краткий список запустивших бота. Имя + Телефон"
             + "/userinfo user_id - информация о пользователе по его id\n"
             + "/broadcast text - отправит text (или что угодно другое) всем участникам\n"
             + "/addadmin nickname - сделает пользователя с ником nickname админом\n"
