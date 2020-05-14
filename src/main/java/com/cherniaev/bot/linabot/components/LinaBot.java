@@ -168,7 +168,7 @@ public class LinaBot extends TelegramLongPollingBot {
         int countPerMsg = 5;
         for (int i = 0; i < users.size() / countPerMsg + 1; i++) {
             StringBuilder sb = new StringBuilder();
-            int lastIndexUser = i + countPerMsg;
+            int lastIndexUser = i * countPerMsg + countPerMsg;
             if (lastIndexUser > users.size()) {
                 lastIndexUser = users.size() - 1;
             }
