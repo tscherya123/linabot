@@ -171,7 +171,7 @@ public class LinaBot extends TelegramLongPollingBot {
             if (lastIndexUser > users.size()) {
                 lastIndexUser = users.size() - 1;
             }
-            sb.append("--- Лист № ").append(i/10 + 1).append(" ---\n");
+            sb.append("--- Лист № ").append(i + 1).append(" ---\n");
             users.subList(i, lastIndexUser).forEach(user -> {
                 sb.append("Участник ").append(user.toString()).append("\n").append("-------------\n");
             });
