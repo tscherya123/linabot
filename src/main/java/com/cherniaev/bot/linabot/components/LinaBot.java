@@ -184,10 +184,11 @@ public class LinaBot extends TelegramLongPollingBot {
         StringBuilder sb = new StringBuilder();
         sb.append("-------------\n");
         sb.append("Количество людей, запустивших бота: ").append(users.size()).append("\n");
-        sb.append("--ИМЯ---ТЕЛ--").append(users.size()).append("\n");
+        sb.append("--ИМЯ---ТЕЛ--").append("\n");
+        sb.append("-------------\n");
         users.forEach(user -> {
-            sb.append("-------------\n");
             sb.append(user.getFirstName()).append(" ").append(user.getPhone());
+            sb.append("-------------\n");
         });
         sendMessage(admin.getChatId(), sb.toString());
     }
