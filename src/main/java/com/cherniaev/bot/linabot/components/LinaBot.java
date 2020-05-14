@@ -162,11 +162,16 @@ public class LinaBot extends TelegramLongPollingBot {
     private void listUsers(User admin) {
         StringBuilder sb = new StringBuilder();
         List<User> users = userService.findAll();
-        sb.append("-------------\n");
-        users.forEach(user -> {
-            sb.append("Участник ").append(user.toString()).append("\n").append("-------------\n");
-        });
-
+        for (int i = 0; i < users.size() / 10 + 1; i += 10) {
+            int lastIndexUser = i + 10;
+            if (lastIndexUser > users.size()) {
+                lastIndexUser = users.size() - 1;
+            }
+            sb.append("--- Лист № ").append(i/10 + 1).append(" ---\n");
+            users.subList(i, lastIndexUser).forEach(user -> {
+                sb.append("Участник ").append(user.toString()).append("\n").append("-------------\n");
+            });
+        }
         sendMessage(admin.getChatId(), sb.toString());
     }
 
