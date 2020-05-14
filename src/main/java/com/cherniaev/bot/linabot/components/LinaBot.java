@@ -184,10 +184,18 @@ public class LinaBot extends TelegramLongPollingBot {
         StringBuilder sb = new StringBuilder();
         sb.append("-------------\n");
         sb.append("Количество людей, запустивших бота: ").append(users.size()).append("\n");
-        sb.append("--ИМЯ---ТЕЛ--").append("\n");
-        sb.append("-------------\n");
+        sb.append("-------------\n\n");
+        sb.append("--ИМЯ---ТЕЛ--").append("\n\n");
         users.forEach(user -> {
-            sb.append(user.getFirstName()).append(" ").append(user.getPhone());
+            String firstName = user.getFirstName();
+            if (firstName == null) {
+                firstName = "-";
+            }
+            String phone = user.getPhone();
+            if (phone == null) {
+                phone = "-";
+            }
+            sb.append(" ").append(user.getId()).append(firstName).append(" ").append(phone).append("\n");
             sb.append("-------------\n");
         });
         sendMessage(admin.getChatId(), sb.toString());
@@ -262,7 +270,7 @@ public class LinaBot extends TelegramLongPollingBot {
     private void help(User admin) {
         String helpMsg = "Комманды для админов: \n"
             + "/all - список участников\n"
-            + "/all_small - краткий список запустивших бота. Имя + Телефон"
+            + "/all_small - краткий список запустивших бота. Id + Имя + Телефон"
             + "/userinfo user_id - информация о пользователе по его id\n"
             + "/broadcast text - отправит text (или что угодно другое) всем участникам\n"
             + "/addadmin nickname - сделает пользователя с ником nickname админом\n"
